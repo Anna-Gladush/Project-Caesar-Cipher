@@ -4,7 +4,7 @@ def substrings(string, dictionary)
   # > substrings("Howdy partner, sit down! How's it going?", dictionary)
   # => { "down" => 1, "go" => 1, "going" => 1, "how" => 2, "howdy" => 1, "it" => 2, "i" => 3, "own" => 1, "part" => 1, "partner" => 1, "sit" => 1 }
 
-
+  result = Hash.new(0)
   # Makes an array for substrings
   # string = "below"
   combinations_storage = []
@@ -14,9 +14,17 @@ def substrings(string, dictionary)
   combinations_storage.each {|arr| arr.each {|array| substring_storage << array.join}}
 
   # Checks if substring in substring_storage is in dictionary
-
-  
+  dictionary.each do |word|
+    substring_storage.each do |substring|
+      if word == substring
+        result[word] += 1
+      end
+    end
+  end
+  p result
   # Next, make sure your method can handle multiple words:
   #  > substrings("Howdy partner, sit down! How's it going?", dictionary)
   # => { "down" => 1, "go" => 1, "going" => 1, "how" => 2, "howdy" => 1, "it" => 2, "i" => 3, "own" => 1, "part" => 1, "partner" => 1, "sit" => 1 }
 end
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+substrings("below", dictionary)
