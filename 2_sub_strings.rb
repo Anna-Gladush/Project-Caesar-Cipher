@@ -11,9 +11,9 @@ def substrings(string, dictionary)
   substring_storage = []
   work = string.split("")
   work.each_with_index {|char, idx| combinations_storage << work.combination(idx+1).to_a}
-  substring_storage << combinations_storage.each {|arr| arr.each {|array| array.join}} 
+  combinations_storage.each {|arr| arr.each {|array| substring_storage << array.join}}
 
-  # Checks if substring is in dictionary
+  # Checks if substring in substring_storage is in dictionary
 
   
   # Next, make sure your method can handle multiple words:
