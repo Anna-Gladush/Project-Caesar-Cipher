@@ -10,8 +10,11 @@ From Wikipedia:
 
 
 ## Sub Strings
-nothing to see here, yet
+From Wikipedia:
 
+"A string-searching algorithm, sometimes called string-matching algorithm, is an algorithm that searches a body of text for portions that match by pattern."
+
+[Sub Strings](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/2_sub_strings.rb)
 
 ## Stock Picker
 nothing to see here, yet
