@@ -17,7 +17,11 @@ From Wikipedia:
 [Sub Strings](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/2_sub_strings.rb)
 
 ## Stock Picker
-nothing to see here, yet
+From The Odin Project:
+
+"Takes in an array of stock prices, one for each hypothetical day. It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0."
+
+[Stock Picker](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/3_stock_picker.rb)
 
 
 ## Bubble Sort
