@@ -1,14 +1,3 @@
-# Table
-a_row = ' 1 | 2 | 3 '
-c_row = ' 4 | 5 | 6 '
-e_row = ' 7 | 8 | 9 '
-divider = '-----------'
-puts a_row, divider, c_row, divider, e_row
-
-# used_numbers = []
-x_positions = []
-o_positions = []
-# Функция хода
 def turn(symbol_positions, symbol, a_row, c_row, e_row)
   answer = gets.chomp.to_i
   answer_str = answer.to_s
@@ -23,8 +12,6 @@ def turn(symbol_positions, symbol, a_row, c_row, e_row)
   [a_row, c_row, e_row]
 end
 
-# check for win
-
 def win_check?(symbol_positions, symbol)
   player = symbol == 'X' ? 1 : 2
   win_pos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
@@ -36,28 +23,42 @@ def win_check?(symbol_positions, symbol)
   end
 end
 
-answer = [' 1 | 2 | 3 ', ' 4 | 5 | 6 ', ' 7 | 8 | 9 ']
-i = 9
-while i >= 1
-  puts 'Player 1 turn: '
-  answer = turn(x_positions, 'X', answer[0], answer[1], answer[2])
-  puts answer[0], divider, answer[1], divider, answer[2]
-  i -= 1
-  p x_positions
-  break if win_check?(x_positions, 'X') == true
+def round
+  puts `clear`
+  puts 'Game: Tic Tac Toe, presented by yours truly'
+  # Table
+  a_row = ' 1 | 2 | 3 '
+  c_row = ' 4 | 5 | 6 '
+  e_row = ' 7 | 8 | 9 '
+  divider = '-----------'
+  puts a_row, divider, c_row, divider, e_row
+  puts 'Enter a number from 1 to 9'
 
-  next if i <= 0
+  x_positions = []
+  o_positions = []
+  answer = [a_row, c_row, e_row]
 
-  puts 'Player 2 turn: '
-  answer = turn(o_positions, 'O', answer[0], answer[1], answer[2])
-  i -= 1
-  puts answer[0], divider, answer[1], divider, answer[2]
-  p o_positions
-  break if win_check?(o_positions, 'O') == true
+  i = 9
+  while i >= 1
+    puts 'Player 1 turn: '
+    answer = turn(x_positions, 'X', answer[0], answer[1], answer[2])
+    puts answer[0], divider, answer[1], divider, answer[2]
+    i -= 1
+    break if win_check?(x_positions, 'X') == true
+
+    next if i <= 0
+
+    puts 'Player 2 turn: '
+    answer = turn(o_positions, 'O', answer[0], answer[1], answer[2])
+    puts answer[0], divider, answer[1], divider, answer[2]
+    i -= 1
+    break if win_check?(o_positions, 'O') == true
+  end
+  puts `clear`
 end
 
-# puts c.count('O')
-# puts `clear` #will clear the output
+round
+# 2.times { round }
 
 # class Player
 #   def turn
