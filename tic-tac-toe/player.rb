@@ -1,5 +1,6 @@
 class Player
   attr_reader :symbol
+
   def initialize(symbol_positions, symbol)
     @symbol_positions = symbol_positions
     @symbol = symbol
@@ -21,6 +22,7 @@ class Player
       e_row = e_row.gsub(answer_str, col_sym)
     end
     @symbol_positions << answer
+    # correcting rainbow replacing symbols with unreadable strings
     a_row = a_row.gsub(" \e[\e[31mX\e[0m1mX\e[0m ", " \e[31mX\e[0m ")
     a_row = a_row.gsub(" \e[\e[31mX\e[0m2mO\e[0m ", " \e[32mO\e[0m ")
     a_row = a_row.gsub(" \e[3\e[31mX\e[0mmX\e[0m ", " \e[31mX\e[0m ")

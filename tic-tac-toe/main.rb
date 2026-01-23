@@ -36,24 +36,5 @@ def round
     break if player2.win_check? == true
   end
 end
+
 round
-
-# 2.times { round }
-
-# class Player
-#   def symbol
-#     sym = nil
-#     until sym == 'X' || sym == 'O'
-#       puts 'Pick "X" or "O"'
-#       sym = gets.chomp
-#       sym.upcase!
-#     end
-#     sym
-#   end
-# end
-
-# if choice_of_p1 == 'X'
-#   choice_of_p2 = 'O'
-# else 
-#   choice_of_p2 = 'X'
-# end
