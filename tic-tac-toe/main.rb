@@ -1,27 +1,4 @@
-def turn(symbol_positions, symbol, a_row, c_row, e_row)
-  answer = gets.chomp.to_i
-  answer_str = answer.to_s
-  if a_row.include?(answer_str)
-    a_row = a_row.gsub(answer_str, symbol)
-  elsif c_row.include?(answer_str)
-    c_row = c_row.gsub(answer_str, symbol)
-  elsif e_row.include?(answer_str)
-    e_row = e_row.gsub(answer_str, symbol)
-  end
-  symbol_positions << answer
-  [a_row, c_row, e_row]
-end
-
-def win_check?(symbol_positions, symbol)
-  player = symbol == 'X' ? 1 : 2
-  win_pos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-  win_pos.any? do |arr|
-    if arr.all? { |item| symbol_positions.include?(item) }
-      puts "Player #{player} has won"
-      true
-    end
-  end
-end
+require_relative 'player'
 
 def round
   puts `clear`
@@ -36,37 +13,34 @@ def round
 
   x_positions = []
   o_positions = []
+
+  player1 = Player.new(x_positions, 'X')
+  player2 = Player.new(o_positions, 'O')
+
   answer = [a_row, c_row, e_row]
 
   i = 9
   while i >= 1
     puts 'Player 1 turn: '
-    answer = turn(x_positions, 'X', answer[0], answer[1], answer[2])
+    answer = player1.turn(answer[0], answer[1], answer[2])
     puts answer[0], divider, answer[1], divider, answer[2]
     i -= 1
-    break if win_check?(x_positions, 'X') == true
+    break if player1.win_check? == true
 
     next if i <= 0
 
     puts 'Player 2 turn: '
-    answer = turn(o_positions, 'O', answer[0], answer[1], answer[2])
+    answer = player2.turn(answer[0], answer[1], answer[2])
     puts answer[0], divider, answer[1], divider, answer[2]
     i -= 1
-    break if win_check?(o_positions, 'O') == true
+    break if player2.win_check? == true
   end
-  puts `clear`
 end
-
 round
+
 # 2.times { round }
 
 # class Player
-#   def turn
-#     answer = gets.chomp
-#     while answer >= 1 && answer <= 9
-#       used_numbers << answer
-#     end
-#   end
 #   def symbol
 #     sym = nil
 #     until sym == 'X' || sym == 'O'
@@ -77,10 +51,6 @@ round
 #     sym
 #   end
 # end
-
-# player1 = Player.new
-# player2 = Player.new
-# choice_of_p1 = player1.symbol
 
 # if choice_of_p1 == 'X'
 #   choice_of_p2 = 'O'
