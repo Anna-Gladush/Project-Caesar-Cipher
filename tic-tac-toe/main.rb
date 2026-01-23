@@ -10,31 +10,29 @@ x_positions = []
 o_positions = []
 # Функция хода
 def turn(symbol_positions, symbol, a_row, c_row, e_row)
-  answer = gets.chomp
-  if a_row.include?(answer)
-    a_row = a_row.gsub(answer, symbol)
-  elsif c_row.include?(answer)
-    c_row = c_row.gsub(answer, symbol)
-  elsif e_row.include?(answer)
-    e_row = e_row.gsub(answer, symbol)
+  answer = gets.chomp.to_i
+  answer_str = answer.to_s
+  if a_row.include?(answer_str)
+    a_row = a_row.gsub(answer_str, symbol)
+  elsif c_row.include?(answer_str)
+    c_row = c_row.gsub(answer_str, symbol)
+  elsif e_row.include?(answer_str)
+    e_row = e_row.gsub(answer_str, symbol)
   end
   symbol_positions << answer
   [a_row, c_row, e_row]
 end
-# used_numbers << answer
 
-# statements for checking winning conditions
-def win_check(symbol_positions, symbol)
+# check for win
+
+def win_check?(symbol_positions, symbol)
   player = symbol == 'X' ? 1 : 2
-  if symbol_positions.all?([1, 2, 3]) || symbol_positions.all?([4, 5, 6]) || symbol_positions.all?([7, 8, 9])
-    puts "Player #{player} has won"
-    'yes'
-  elsif symbol_positions.all?([1, 4, 7]) || symbol_positions.all?([2, 5, 8]) || symbol_positions.all?([3, 6, 9])
-    puts "Player #{player} has won"
-    'yes'
-  elsif symbol_positions.all?([1, 5, 9]) || symbol_positions.all?([3, 5, 7])
-    puts "Player #{player} has won"
-    'yes'
+  win_pos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+  win_pos.any? do |arr|
+    if arr.all? { |item| symbol_positions.include?(item) }
+      puts "Player #{player} has won"
+      true
+    end
   end
 end
 
@@ -45,9 +43,8 @@ while i >= 1
   answer = turn(x_positions, 'X', answer[0], answer[1], answer[2])
   puts answer[0], divider, answer[1], divider, answer[2]
   i -= 1
-  break if win_check(x_positions, 'X') == 'yes'
-
-  puts x_positions
+  p x_positions
+  break if win_check?(x_positions, 'X') == true
 
   next if i <= 0
 
@@ -55,9 +52,8 @@ while i >= 1
   answer = turn(o_positions, 'O', answer[0], answer[1], answer[2])
   i -= 1
   puts answer[0], divider, answer[1], divider, answer[2]
-  break if win_check(o_positions, 'O') == 'yes'
-
-  puts o_positions
+  p o_positions
+  break if win_check?(o_positions, 'O') == true
 end
 
 # puts c.count('O')
