@@ -10,7 +10,6 @@ def round
   e_row = ' 7 | 8 | 9 '
   divider = '-----------'
   puts a_row, divider, c_row, divider, e_row
-  puts 'Enter a number from 1 to 9'
 
   x_positions = []
   o_positions = []

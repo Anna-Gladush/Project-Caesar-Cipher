@@ -6,7 +6,11 @@ class Player
   end
 
   def turn(a_row, c_row, e_row)
-    answer = gets.chomp.to_i
+    answer = nil
+    until [1, 2, 3, 4, 5, 6, 7, 8, 9].include?(answer)
+      puts 'Enter a number from 1 to 9'
+      answer = gets.chomp.to_i
+    end
     answer_str = answer.to_s
     col_sym = @symbol == 'X' ? Rainbow(symbol).red : Rainbow(symbol).green
     if a_row.include?(answer_str)
