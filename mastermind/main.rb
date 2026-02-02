@@ -71,7 +71,7 @@ def board(up_str, down_str)
 end
 
 def cipher_code
-  puts 'Enter your code'
+  puts 'Enter your code: '
   code = []
   4.times do
     code << gets.chomp
@@ -100,4 +100,18 @@ def game
   end
 end
 
-game
+puts 'Do you want to play Player vs Player? or Player vs Computer?'
+mode = nil
+until %w[a b].include?(mode)
+  puts 'Please enter: '
+  puts 'a) PvP      b) PvC'
+  mode = gets.chomp
+end
+
+if mode == 'a'
+  game
+elsif mode == 'b'
+  # computer game
+  # chose whether you make code or computer, and thus who will be breaking it
+  puts 'Sorry, not yet'
+end
