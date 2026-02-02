@@ -7,15 +7,6 @@ class Player
 
 end
 
-# HOW many guesses are left - counter! (10?)
-# board
-# feedback  guess
-# |3 1|  v g y b
-# |4 2|  4 3 2 1
-# ---------------
-# |3 1|
-# |4 2|  4 3 2 1
-# ---------------
 def col_peg(str)
   peg = "\u2022"
   str = str.gsub('v', Rainbow(peg).magenta)
@@ -67,29 +58,46 @@ def feedback_visual(feedback, up_str, down_str)
   puts up_str, down_str
 end
 
-def game(up_str, down_str, code, guess)
+def turn(up_str, down_str, code, guess)
   feed = feedback(code, guess)
-  p feed
   vis = player_turn_visual(up_str, down_str, guess)
   feedback_visual(feed, vis[0], vis[1])
 end
 
-# def check_win(feedback)
-#   # false true false false
-#   break if feedback.all?(true) == true
-#   end
-# end
-
-a = '|3 1|         '
-b = '|4 2|  4 3 2 1'
-divider = '---------------'
-code = %w[v g y b] # g g y b
-puts 'MASTERMIND BOARD: '
-puts divider, a, b, divider
-i = 9
-while i >= 0
-  guess = user_guess
-  game(a, b, code, guess)
-  puts 'You cracked the code! Congratulations!' if feedback(code, guess).all?(true)
-  break if feedback(code, guess).all?(true)
+def board(up_str, down_str)
+  divider = '---------------'
+  puts 'MASTERMIND BOARD: '
+  puts divider, up_str, down_str, divider
 end
+
+def cipher_code
+  puts 'Enter your code'
+  code = []
+  4.times do
+    code << gets.chomp
+  end
+  code
+end
+
+#code = %w[v g y b] # g g y b
+
+def game
+  a = '|3 1|         '
+  b = '|4 2|  4 3 2 1'
+  code = cipher_code
+  puts `clear`
+  board(a, b)
+  i = 9
+  while i >= 0
+    puts 'You lost' if i.zero?
+    break if i.zero?
+
+    guess = user_guess
+    turn(a, b, code, guess)
+    i -= 1
+    puts 'You cracked the code! Congratulations!' if feedback(code, guess).all?(true)
+    break if feedback(code, guess).all?(true)
+  end
+end
+
+game
