@@ -71,7 +71,8 @@ def board(up_str, down_str)
 end
 
 def cipher_code
-  puts 'Enter your code: '
+  puts 'Enter v for violet, b for blue, y for yellow, g for green'
+  puts 'Your code: '
   code = []
   4.times do
     code << gets.chomp
@@ -100,18 +101,37 @@ def game
   end
 end
 
-puts 'Do you want to play Player vs Player? or Player vs Computer?'
-mode = nil
-until %w[a b].include?(mode)
-  puts 'Please enter: '
-  puts 'a) PvP      b) PvC'
-  mode = gets.chomp
+def mode
+  puts 'Do you want to play Player vs Player? or Player vs Computer?'
+  mode = nil
+  until %w[a b].include?(mode)
+    puts 'Please enter: '
+    puts 'a) PvP      b) PvC'
+    mode = gets.chomp
+  end
+  if mode == 'a'
+    game
+  elsif mode == 'b'
+    # computer game
+    # chose whether you make code or computer, and thus who will be breaking it
+    puts 'Sorry, not yet'
+  end
 end
 
-if mode == 'a'
-  game
-elsif mode == 'b'
-  # computer game
-  # chose whether you make code or computer, and thus who will be breaking it
-  puts 'Sorry, not yet'
+# mode
+
+def check_count?(arr)
+  if arr.count('b') >= 2 || arr.count('v') >= 2 || arr.count('y') >= 2 || arr.count('g') >= 2
+    false
+  else
+    true
+  end
 end
+
+def all_solutions
+  arr = %w[g v b y]
+  master_array = arr.product(arr, arr, arr)
+  arr = master_array.select { |arr| arr.length == 4 && check_count?(arr) == true }
+  arr.length
+end
+p all_solutions
