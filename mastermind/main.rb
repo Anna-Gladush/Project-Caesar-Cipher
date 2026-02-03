@@ -98,7 +98,7 @@ def computer_code
   all_solutions.sample
 end
 
-def game(cipher, codebreaker)
+def game(cipher)
   a = '|3 1|         '
   b = '|4 2|  4 3 2 1'
   code = cipher
@@ -109,7 +109,7 @@ def game(cipher, codebreaker)
     puts 'You lost' if i.zero?
     break if i.zero?
 
-    guess = codebreaker == 'player' ? user_guess : computer_guess
+    guess = user_guess
     turn(a, b, code, guess)
     i -= 1
     puts 'You cracked the code! Congratulations!' if feedback(code, guess).all?(true)
@@ -117,9 +117,27 @@ def game(cipher, codebreaker)
   end
 end
 
-def computer_guess
+def computer_guess(player_code)
+  a = '|3 1|         '
+  b = '|4 2|  4 3 2 1'
+  puts `clear`
+  board(a, b)
   initial_guess = %w[v v v v]
-  initial_guess
+  guess = initial_guess
+  turn(a, b, player_code, guess)
+  feed = feedback(player_code, guess)
+  feed = feed.map.with_index { |val, idx| val == false ? nil : guess[idx] }
+  guess = feed.map { |x| x.nil? ? 'y' : x }
+  turn(a, b, player_code, guess)
+  feed = feedback(player_code, guess)
+  feed = feed.map.with_index { |val, idx| val == false ? nil : guess[idx] }
+  guess = feed.map { |x| x.nil? ? 'b' : x }
+  turn(a, b, player_code, guess)
+  feed = feedback(player_code, guess)
+  feed = feed.map.with_index { |val, idx| val == false ? nil : guess[idx] }
+  guess = feed.map { |x| x.nil? ? 'g' : x }
+  turn(a, b, player_code, guess)
+  puts 'Computer cracked the code!' if feedback(player_code, guess).all?(true)
 end
 
 def computer_game
@@ -131,7 +149,7 @@ def computer_game
     mode = gets.chomp
   end
   if mode == 'a'
-    game(computer_code, 'player')
+    game(computer_code)
   else
     # computer is the codebreaker
     puts 'Sorry, not yet'
@@ -147,10 +165,11 @@ def mode
     mode = gets.chomp
   end
   if mode == 'a'
-    game(player_code, 'player')
+    game(player_code)
   else
     computer_game
   end
 end
 
-mode
+# mode
+computer_guess(%w[v g y b])
