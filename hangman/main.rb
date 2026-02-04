@@ -9,5 +9,7 @@ def random_word
   dictionary.sample
 end
 
-word = random_word
-puts word, word.length
+word = random_word # unnecessary
+puts word, word.length # 12
+correct_char = String.new('_' * word.length)
+puts correct_char
