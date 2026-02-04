@@ -11,16 +11,14 @@ def random_word
   dictionary = []
   File.open('words.txt', 'r') do |file|
     file.readlines.each do |line|
-      dictionary << line
+      dictionary << line if line.length >= 5 && line.length <= 12
     end
   end
-  dictionary.select! { |word| word.length >= 5 && word.length <= 12 }
   dictionary.sample
 end
 
 def user_input
   char = 'word'
-  # checks if input is a letter and its length is equal to 1.
   ask = 'Please enter your guess (one letter): '
   until char.length == 1 && char.match?(/[A-Za-z]/)
     puts ask
@@ -30,13 +28,13 @@ def user_input
 end
 
 def game
-  word = 'unnecessary' # random_word
-  puts word, word.length # 11
-  guess_word = String.new('_' * word.length)
+  word = random_word
+  puts word, (word.length - 1)
+  guess_word = String.new('_' * (word.length - 1))
   wrong_guess = []
-  try_left = 0 # 9
+  try_left = 0
   puts guess_word
-  while try_left <= 9 do
+  while try_left <= 9
     puts 'You won!' if word == guess_word
     if try_left == 9
       hangman(9)
@@ -50,11 +48,12 @@ def game
       idx.each { |i| guess_word[i] = guess }
     else
       hangman(try_left + 1)
-      puts 'wrong'
       wrong_guess << guess
       try_left += 1
+      puts "Tries left: #{9 - try_left}"
     end
-    puts guess_word, wrong_guess
+    puts guess_word
+    print "#{wrong_guess.join(', ')}\n"
   end
 end
 
