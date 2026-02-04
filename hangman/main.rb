@@ -11,7 +11,8 @@ def random_word
   dictionary = []
   File.open('words.txt', 'r') do |file|
     file.readlines.each do |line|
-      dictionary << line if line.length >= 5 && line.length <= 12
+      word = line.chomp
+      dictionary << word if word.length >= 5 && word.length <= 12
     end
   end
   dictionary.sample
@@ -29,8 +30,8 @@ end
 
 def game
   word = random_word
-  puts word, (word.length - 1)
-  guess_word = String.new('_' * (word.length - 1))
+  p word, word.length
+  guess_word = String.new('_' * word.length)
   wrong_guess = []
   try_left = 0
   puts guess_word
