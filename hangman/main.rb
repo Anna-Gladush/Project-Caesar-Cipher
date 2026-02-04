@@ -1,3 +1,5 @@
+require_relative 'hangman'
+
 def random_word
   dictionary = []
   File.open('words.txt', 'r') do |file|
@@ -26,3 +28,7 @@ def user_input
   end
 end
 user_input
+
+def turn
+  
+end

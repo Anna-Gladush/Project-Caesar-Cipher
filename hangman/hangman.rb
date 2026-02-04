@@ -1,3 +1,4 @@
+# This class draws a hangman
 class Hangman
   def level1
     puts ' '
