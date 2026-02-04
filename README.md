@@ -41,3 +41,7 @@ From Wikipedia:
 ## Mastermind
 
 [Mastermind](https://github.com/Anna-Gladush/Ruby-projects/tree/main/mastermind)
+
+## Hangman
+
+[Hangman](https://github.com/Anna-Gladush/Ruby-projects/tree/main/hangman)
