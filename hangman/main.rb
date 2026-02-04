@@ -11,5 +11,7 @@ end
 
 word = random_word # unnecessary
 puts word, word.length # 12
-correct_char = String.new('_' * word.length)
-puts correct_char
+guess_word = String.new('_' * word.length)
+puts guess_word
+
+try_left = 9
