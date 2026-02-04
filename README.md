@@ -45,3 +45,5 @@ From Wikipedia:
 ## Hangman
 
 [Hangman](https://github.com/Anna-Gladush/Ruby-projects/tree/main/hangman)
+
+Dictionary file was taken from the first20hours GitHub repository [google-10000-english](https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt)
