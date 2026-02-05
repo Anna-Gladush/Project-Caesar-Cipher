@@ -1,4 +1,4 @@
-require json
+require 'json'
 require_relative 'hangman'
 
 def find_index(str, letter)
@@ -67,8 +67,22 @@ def game
   end
 end
 
-def save
-  File.open('progress.json')
+def save_progress(word, guess_word, try, wrong, right)
+  progress = {
+    word: word,
+    guess_word: guess_word,
+    try_left: try,
+    wrong_guesses: wrong,
+    right_guess: right
+  }
+  File.write('progress.json', JSON.pretty_generate(progress))
 end
 
-game
+def receive_progress
+  data = JSON.load_file('progress.json')
+  puts data
+end
+
+save_progress('unnecessary', 'u__ecessary', 3, 6, 7)
+p receive_progress
+# game
