@@ -1,6 +1,38 @@
 require 'json'
 require_relative 'hangman'
 
+def save_progress(word, guess_word, try, wrong, right)
+  progress = {
+    word: word,
+    guess_word: guess_word,
+    try_left: try,
+    wrong_guesses: wrong,
+    right_guess: right
+  }
+  File.write('progress.json', JSON.pretty_generate(progress))
+end
+
+def receive_progress
+  data = JSON.load_file('progress.json')
+  puts data
+end
+
+def load
+  s_and_l = 'If you want to load your previous progress type "load"'
+  puts s_and_l
+  load = gets.chomp.downcase
+  receive_progress if load == 'load'
+end
+
+def default
+  word = random_word
+  guess_word = String.new('_' * word.length)
+  try_left = 0
+  wrong_guess = []
+  right_guess = []
+  [word, guess_word, try_left, wrong_guess, right_guess]
+end
+
 def find_index(str, letter)
   idx = []
   str_arr = str.split('')
@@ -67,22 +99,8 @@ def game
   end
 end
 
-def save_progress(word, guess_word, try, wrong, right)
-  progress = {
-    word: word,
-    guess_word: guess_word,
-    try_left: try,
-    wrong_guesses: wrong,
-    right_guess: right
-  }
-  File.write('progress.json', JSON.pretty_generate(progress))
-end
-
-def receive_progress
-  data = JSON.load_file('progress.json')
-  puts data
-end
-
-save_progress('unnecessary', 'u__ecessary', 3, 6, 7)
-p receive_progress
+# save_progress('unnecessary', 'u__ecessary', 3, 6, 7)
+# p receive_progress
 # game
+# load
+# p default
