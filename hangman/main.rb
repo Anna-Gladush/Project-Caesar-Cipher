@@ -109,8 +109,4 @@ def game
   end
 end
 
-# save_progress('unnecessary', 'u__ecessary', 3, ["f", "o", "d", "k", "m", "l"], ["u", "e", "c", "s", "a", "r", "y"])
-# receive_progress
 game
-# load
-# p default
