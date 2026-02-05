@@ -18,15 +18,13 @@ def receive_progress
 end
 
 def load
+  load = nil
   puts 'Would you like to load previous game (Y/N): '
-  load = gets.chomp.downcase
+  load = gets.chomp.downcase until %w[y yes n no].include?(load)
   if %w[y yes].include?(load)
     receive_progress
-  elsif %w[n no].include?(load)
-    default
   else
-    puts "I don't understand"
-    load
+    default
   end
 end
 
@@ -69,6 +67,7 @@ end
 
 def game
   game_info = load
+  puts `clear`
   word = game_info[0]
   guess_word = game_info[1]
   try_left = game_info[2]
