@@ -1,6 +1,7 @@
 require 'rainbow'
 require_relative 'player'
 
+# Methods for coloring pegs and making a dict of all possible combinations of code
 module Essentials
   def all_solutions
     arr = %w[g v b y]
@@ -22,6 +23,8 @@ module Essentials
     str.gsub('true', Rainbow(peg).red)
   end
 end
+
+# All game functions
 class Board
   include Essentials
 
@@ -106,19 +109,19 @@ class Board
   end
 end
 
-class Computer
+# Computer actions
+class Computer < Board
   def computer_turn(player_code)
-    board = Board.new
     a = '|3 1|         '
     b = '|4 2|  4 3 2 1'
     puts `clear`
-    board.board(a, b)
+    board(a, b)
     initial_guess = %w[v v v v]
     guess = computer_guess(initial_guess, a, b, player_code, 'y')
     guess = computer_guess(guess, a, b, player_code, 'b')
     guess = computer_guess(guess, a, b, player_code, 'g')
-    board.turn(a, b, player_code, guess)
-    puts 'Computer cracked the code!' if board.feedback(player_code, guess).all?(true)
+    turn(a, b, player_code, guess)
+    puts 'Computer cracked the code!' if feedback(player_code, guess).all?(true)
   end
 
   def computer_game
@@ -130,8 +133,7 @@ class Computer
       mode = gets.chomp
     end
     if mode == 'a'
-      board = Board.new
-      board.game(computer_code)
+      game(computer_code)
     else
       player = Player.new
       computer_turn(player.player_code)
@@ -139,14 +141,12 @@ class Computer
   end
 
   def computer_code
-    board = Board.new
-    board.all_solutions.sample
+    all_solutions.sample
   end
 
   def computer_guess(guess, a, b, player_code, sym)
-    board = Board.new
-    board.turn(a, b, player_code, guess)
-    feed = board.feedback(player_code, guess)
+    turn(a, b, player_code, guess)
+    feed = feedback(player_code, guess)
     feed = feed.map.with_index { |val, idx| val == false ? nil : guess[idx] }
     guess = feed.map { |x| x.nil? ? sym : x }
   end

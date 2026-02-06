@@ -1,3 +1,4 @@
+# Player actions
 class Player
   def user_guess
     arr = Array.new(4)
