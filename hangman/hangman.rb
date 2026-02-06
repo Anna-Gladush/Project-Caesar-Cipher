@@ -114,13 +114,3 @@ def hangman(num)
     hang.gameover
   end
 end
-# hang = Hangman.new
-# hang.level1
-# hang.level2
-# hang.level3
-# hang.level4
-# hang.level5
-# hang.level6
-# hang.level7
-# hang.level8
-# hang.gameover
