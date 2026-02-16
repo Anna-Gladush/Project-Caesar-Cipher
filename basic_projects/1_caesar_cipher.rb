@@ -64,9 +64,3 @@ def caesar_decipher(string, step = 1)
   result.pop
   result.join
 end
-
-# p caesar_cipher("Zorro!")
-# p caesar_cipher("What a string!", 5)
-
-# p caesar_decipher("Bmfy f xywnsl!", 5)
-# p caesar_decipher("Apssp!")
