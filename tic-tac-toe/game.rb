@@ -44,6 +44,3 @@ class Game
     puts @a_row, @divider, @c_row, @divider, @e_row
   end
 end
-
-New_game = Game.new
-New_game.game(Player.new('X'), Player.new('O'))
