@@ -1,24 +1,24 @@
 # Basic Ruby Projects
 
-## [Caesar Cipher (...and Decipher)](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/1_caesar_cipher.rb)
+## [Caesar Cipher (...and Decipher)](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/basic_projects/1_caesar_cipher.rb)
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Caesar_cipher):
 
 "In cryptography, a Caesar cipher, also known as Caesar’s cipher, the shift cipher, Caesar’s code or Caesar shift, is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. The method is named after Julius Caesar, who used it in his private correspondence."
 
-## [Sub Strings](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/2_sub_strings.rb)
+## [Sub Strings](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/basic_projects/2_sub_strings.rb)
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Substring):
 
 "A string-searching algorithm, sometimes called string-matching algorithm, is an algorithm that searches a body of text for portions that match by pattern."
 
-## [Stock Picker](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/3_stock_picker.rb)
+## [Stock Picker](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/basic_projects/3_stock_picker.rb)
 
 From [The Odin Project](https://www.theodinproject.com/lessons/stock-picker):
 
 "Takes in an array of stock prices, one for each hypothetical day. It should return a pair of days representing the best day to buy and the best day to sell. Days start at 0."
 
-## [Bubble Sort](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/4_bubble_sort.rb)
+## [Bubble Sort](https://github.com/Anna-Gladush/Project-Caesar-Cipher/blob/main/basic_projects/4_bubble_sort.rb)
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Bubble_sort):
 
