@@ -27,9 +27,3 @@ def stock_picker(array)
   end
   [buy_idx, sell_idx]
 end
-
-# p stock_picker([17,3,6,9,15,8,6,1,10])
-# p stock_picker([17])
-# p stock_picker([17, 5])
-# p stock_picker([9, 2, 2, 2, 1])
-# p stock_picker([1, 2, 2, 2, 13])
