@@ -18,16 +18,20 @@ class Player
     @symbol == 'X' ? Rainbow(symbol).red : Rainbow(symbol).green
   end
 
+  def string_assignment(str, answer, col_sym)
+    if str.include?(answer)
+      str.gsub(answer, col_sym)
+    else
+      str
+    end
+  end
+
   def user_input(a_row, c_row, e_row, symbol_positions)
     answer = input
     col_sym = symbol_assignment
-    if a_row.include?(answer)
-      a_row = a_row.gsub(answer, col_sym)
-    elsif c_row.include?(answer)
-      c_row = c_row.gsub(answer, col_sym)
-    elsif e_row.include?(answer)
-      e_row = e_row.gsub(answer, col_sym)
-    end
+    a_row = string_assignment(a_row, answer, col_sym)
+    c_row = string_assignment(c_row, answer, col_sym)
+    e_row = string_assignment(e_row, answer, col_sym)
     symbol_positions << answer.to_i
     # correcting rainbow replacing symbols with unreadable strings
     a_row = replace_artifacts(a_row)
